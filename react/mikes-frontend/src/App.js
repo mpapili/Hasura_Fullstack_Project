@@ -1,35 +1,24 @@
 import { Route, Routes } from 'react-router-dom';
 
-import Todo from './components/Todo';
 import AllMeetupsPage from './pages/AllMeetups';
 import FavoritesPage from './pages/Favorites';
 import NewMeetupPage from './pages/NewMeetup';
-import MainNavigation from './components/layout/MainNavigation';
+import Layout from './components/layout/Layout';
 
 function App() {
 
   // localhost:3000 is our main
-
+  // Components should focus on ONE MAIN THING
+  // in the case of App() we want to only focus on the Layout + Routing!
   return (
     <div>
-      <MainNavigation />
-      <Routes>
-        <Route path='/' element={<AllMeetupsPage />} />
-        <Route path='/new-meetup' element={<NewMeetupPage />} />
-        <Route path='/favorites' element={<FavoritesPage />} />
-      </Routes>
-
-
-      {/*
-      DEMO COMPONENTS:
-      <h1>My Todos</h1>
-      <div>
-        <Todo text="Learning React"/>
-        <Todo text="Still Learning React"/>
-        <Todo text="Done Learning React"/>
-      </div>
-      */}
-
+      <Layout>
+        <Routes>
+          <Route path='/' element={<AllMeetupsPage />} />
+          <Route path='/new-meetup' element={<NewMeetupPage />} />
+          <Route path='/favorites' element={<FavoritesPage />} />
+        </Routes>
+      </Layout>
     </div>
   );
 }

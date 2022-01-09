@@ -1,3 +1,5 @@
+import MeetupList from '../components/meetups/MeetupList';
+
 const DUMMY_DATA = [
     {
         id: 'm1',
@@ -11,7 +13,7 @@ const DUMMY_DATA = [
         id: 'm2',
         title: 'This is the second meetup!',
         image:
-            'https://www.morristourism.org/wp-content/uploads/2017/05/Taylor-Ice-Cream-Weisler-Chester-scaled-2.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Main_Street%2C_Chester%2C_NJ_-_clock.jpg/1200px-Main_Street%2C_Chester%2C_NJ_-_clock.jpg',
         address: 'MeetStreet 7, 12345 Cool City',
         description: 'going to talk about how cool the town is again',
     },
@@ -22,11 +24,7 @@ function AllMeetupsPage() {
 
     return <section>
         <h1>All Meetups</h1>
-        <ul>
-            {DUMMY_DATA.map((meetup) => {
-                return <li key={meetup.id}>{meetup.title}</li>
-            })}
-        </ul>
+        <MeetupList meetups={DUMMY_DATA} />
     </section>
 }
 
