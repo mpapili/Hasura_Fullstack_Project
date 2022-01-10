@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import MeetupList from '../components/meetups/MeetupList';
 
+/*
 const DUMMY_DATA = [
     {
         id: 'm1',
@@ -19,8 +20,8 @@ const DUMMY_DATA = [
         address: 'MeetStreet 7, 12345 Cool City',
         description: 'going to talk about how cool the town is again',
     },
-
 ]
+*/
 
 
 function AllMeetupsPage() {
