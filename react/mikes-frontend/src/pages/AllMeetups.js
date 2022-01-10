@@ -32,10 +32,36 @@ function AllMeetupsPage() {
         )
         .then(response => response.json())
         .then(data => setAllMeetups(data));
-    }    
+    }
 
-    useEffect(() => getMeetups(), []);
+    async function testGraphql() {
+        const MEETUPS_QUERY = `
+            {
+                meetups_meetup {
+                    address
+                    description
+                    id
+                    image
+                    title
+                }    
+            }
+        `;
 
+        const response = await fetch('http://localhost:8080/v1/graphql', {
+           method:'POST',
+     
+           headers:{'content-type':'application/json'},
+           body:JSON.stringify({query: MEETUPS_QUERY})
+        })
+     
+        const rsponseBody = await response.json();
+        setAllMeetups(rsponseBody.data.meetups_meetup);
+        return rsponseBody.data;
+     }
+
+
+    //useEffect(() => getMeetups(), []);
+    useEffect(() => testGraphql(), []);
     return <section>
         <h1>All Meetups</h1>
         <MeetupList meetups={allMeetups} />
