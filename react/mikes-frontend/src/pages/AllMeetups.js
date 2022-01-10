@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import MeetupList from '../components/meetups/MeetupList';
 
 const DUMMY_DATA = [
@@ -20,11 +22,22 @@ const DUMMY_DATA = [
 
 ]
 
+
 function AllMeetupsPage() {
+    const [ allMeetups, setAllMeetups ] = useState([]);
+
+    async function getMeetups() {
+        const response = await fetch('http://localhost:8000/meetups'
+        )
+        .then(response => response.json())
+        .then(data => setAllMeetups(data));
+    }    
+
+    useEffect(() => getMeetups(), []);
 
     return <section>
         <h1>All Meetups</h1>
-        <MeetupList meetups={DUMMY_DATA} />
+        <MeetupList meetups={allMeetups} />
     </section>
 }
 

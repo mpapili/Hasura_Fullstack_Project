@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import Card from "../ui/Card";
 import classes from './NewMeetupForm.module.css';
 
-function NewMeetupForm() {
+function NewMeetupForm(props) {
 
     // Form that will be used to add NEW meetups
     // once again we'll wrap this in a "card" component
@@ -38,6 +38,9 @@ function NewMeetupForm() {
         console.log("Our Data is now " + meetupData);
 
         // send our meetup data to a server!
+        // we'll want to pass this up to our parent component to handle via
+        // -a prop function that was passed in through "props"
+        props.onAddMeetup(meetupData);
     }
 
     return <Card>

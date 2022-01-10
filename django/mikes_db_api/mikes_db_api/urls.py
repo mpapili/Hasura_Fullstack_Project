@@ -15,12 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView
 
+from meetups import views as meetup_views
 from pets import views as pet_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     
     # pets
-    path('pets/<int:pk>/', pet_views.pet_detail, name='pet_detail')
+    path('pets/<int:pk>/', pet_views.pet_detail, name='pet_detail'),
+
+    # meetups
+    path('meetups/add', meetup_views.add_meetup, name='add_meetup'),
+    path('meetups', meetup_views.MeetupView.as_view()),
+
 ]
