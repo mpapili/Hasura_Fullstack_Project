@@ -14,20 +14,6 @@ const MEETUPS_QUERY = `
 `;
 
 function NewMeetupPage() {
-
-    async function testGraphql() {
-        const response = await fetch('http://localhost:8080/v1/graphql', {
-           method:'POST',
-     
-           headers:{'content-type':'application/json'},
-           body:JSON.stringify({query: MEETUPS_QUERY})
-        })
-     
-        const rsponseBody = await response.json();
-        return rsponseBody.data;
-     
-        console.log("end of function")
-     }
      
     async function addMeetupHandler(meetupData) {
         const response = await fetch('http://127.0.0.1:8000/meetups/add',
@@ -37,10 +23,76 @@ function NewMeetupPage() {
         });
     }
 
+    async function addMeetupGraphql(meetupData) {
+        const MUTATION = `
+        mutation AddMeetup {
+            insert_meetups_meetup_one(object: 
+              {address: "${meetupData.address}", 
+               description: "${meetupData.description}",
+               image: "${meetupData.image}",
+               title: "${meetupData.title}"}) {
+              id
+            }
+          }          
+        `
+        const response = await fetch('http://localhost:8080/v1/graphql', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                query: MUTATION,
+            }),
+        })
+        const responseBody = await response.json();
+        console.log("Results of POST attempt:" + responseBody);
+        
+    }
+
+    async function addMeetupGraphqlWithValidation(meetupData) {
+        const MUTATION = `
+        mutation AddMeetup {
+            AddMeetup(meetupData: 
+            {
+                address: "${meetupData.address}",
+                description: "${meetupData.description}",
+                id: 10,
+                title: "${meetupData.title}",
+                image: "${meetupData.image}"
+            })
+            {
+              address
+              description
+              id
+              image
+              title
+            }
+            insert_meetups_meetup_one(object:
+            {
+                address: "${meetupData.address}",
+                description: "${meetupData.description}",
+                id: 10,
+                title: "${meetupData.title}",
+                image: "${meetupData.image}"
+            }) {
+              id
+            }
+          }          
+        `
+        const response = await fetch('http://localhost:8080/v1/graphql', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                query: MUTATION,
+            }),
+        })
+        const responseBody = await response.json();
+        console.log("Results of POST attempt:" + responseBody);
+
+    }
+
     return <section>
          <h1>Add New Meetup</h1>
-        <NewMeetupForm onAddMeetup={addMeetupHandler}/>
-        <button onClick={testGraphql}>Test graphql</button>
+        <NewMeetupForm onAddMeetup={addMeetupGraphql}/>
+        <button onClick={addMeetupGraphqlWithValidation}>Test graphql</button>
     </section>
 
 }

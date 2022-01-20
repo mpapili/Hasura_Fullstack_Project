@@ -20,6 +20,24 @@ def add_meetup(request):
     )
     return Response({'message': f'Meetup Created with id {new_meetup.id}'})
 
+@api_view(['POST'])
+def validate_meetup_hasura(request):
+    '''
+    webhook for Hasura GraphQL
+    '''
+    print(request.data.keys())
+    print(request.data['input'])
+    print(request.data['request_query'])
+    data = request.data['input']['meetupData']
+    #data = request.data['input']
+    # custom error test
+    if data['title'] == 'Test Failure':
+        return Response({'message': f'Here is your custom failure!'},
+            status=400) 
+    data['title'] = "HERE IS YOUR TITLE FROM DJANGO"
+    return Response(data)
+
+
 
 class MeetupView(generics.ListAPIView):
 

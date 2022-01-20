@@ -27,12 +27,15 @@ const DUMMY_DATA = [
 function AllMeetupsPage() {
     const [ allMeetups, setAllMeetups ] = useState([]);
 
+    /*
+    // http REST equivalent of what we're doing in GraphQL
     async function getMeetups() {
         const response = await fetch('http://localhost:8000/meetups'
         )
         .then(response => response.json())
         .then(data => setAllMeetups(data));
     }
+    */
 
     async function testGraphql() {
         const MEETUPS_QUERY = `

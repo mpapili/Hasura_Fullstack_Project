@@ -27,6 +27,7 @@ urlpatterns = [
     path('pets/<int:pk>/', pet_views.pet_detail, name='pet_detail'),
 
     # meetups
+    path('meetups/validate', meetup_views.validate_meetup_hasura, name='validate_meetup'),
     path('meetups/add', meetup_views.add_meetup, name='add_meetup'),
     path('meetups', meetup_views.MeetupView.as_view()),
 
