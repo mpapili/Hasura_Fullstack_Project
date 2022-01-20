@@ -91,7 +91,7 @@ function NewMeetupPage() {
 
     return <section>
          <h1>Add New Meetup</h1>
-        <NewMeetupForm onAddMeetup={addMeetupGraphql}/>
+        <NewMeetupForm onAddMeetup={addMeetupGraphqlWithValidation}/>
         <button onClick={addMeetupGraphqlWithValidation}>Test graphql</button>
     </section>
 
