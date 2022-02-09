@@ -1,0 +1,3 @@
+GraphQL via Hasura: 6.124s
+Gorm via Gin: 5.004s
+Django:12.848s
