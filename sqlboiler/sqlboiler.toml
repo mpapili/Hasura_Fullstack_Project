@@ -1,0 +1,6 @@
+[psql]
+dbname = "mikes_db"
+host = "localhost"
+port = "5432"
+user = "mikes_db"
+pass = "mikes_db"
