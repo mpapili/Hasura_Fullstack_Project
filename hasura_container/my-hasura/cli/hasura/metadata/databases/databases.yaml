@@ -1,0 +1,8 @@
+- name: mikes_db
+  kind: postgres
+  configuration:
+    connection_info:
+      database_url: postgresql://mikes_db:mikes_db@172.17.0.1:5432/mikes_db
+      isolation_level: read-committed
+      use_prepared_statements: false
+  tables: "!include mikes_db/tables/tables.yaml"

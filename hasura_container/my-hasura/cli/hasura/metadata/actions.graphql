@@ -1,0 +1,50 @@
+type Mutation {
+  AddMeetup(
+    meetupData: InputData!
+  ): Meetup
+}
+
+type Mutation {
+  AddMeetupAllInOne(
+    title: String!
+    address: String!
+    description: String!
+    image: String!
+  ): AddMeetupAllInOneOutput
+}
+
+type Mutation {
+  testAction(
+    arg1: SampleInput!
+  ): SampleOutput
+}
+
+input SampleInput {
+  username: String!
+  password: String!
+}
+
+input InputData {
+  title: String!
+  image: String!
+  description: String!
+  id: Int!
+  address: String!
+}
+
+type SampleOutput {
+  accessToken: String!
+}
+
+type Meetup {
+  title: String!
+  image: String!
+  description: String!
+  id: Int!
+  address: String!
+}
+
+type AddMeetupAllInOneOutput {
+  title: String!
+}
+

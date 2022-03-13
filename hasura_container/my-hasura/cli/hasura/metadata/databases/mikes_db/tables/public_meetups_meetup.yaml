@@ -1,0 +1,3 @@
+table:
+  name: meetups_meetup
+  schema: public

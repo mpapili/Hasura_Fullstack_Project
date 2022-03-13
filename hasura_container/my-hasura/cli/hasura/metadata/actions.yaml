@@ -1,0 +1,26 @@
+actions:
+- name: AddMeetup
+  definition:
+    kind: synchronous
+    handler: http://172.17.0.1:8000/meetups/validate
+  comment: Create a Meetup Object
+- name: AddMeetupAllInOne
+  definition:
+    kind: synchronous
+    handler: http://172.17.0.1:8000/meetups/validate
+  comment: AddMeetupAllInOne
+- name: testAction
+  definition:
+    kind: synchronous
+    handler: http://localhost:8000/meetups
+  comment: Test Action on Mutation
+custom_types:
+  enums: []
+  input_objects:
+  - name: SampleInput
+  - name: InputData
+  objects:
+  - name: SampleOutput
+  - name: Meetup
+  - name: AddMeetupAllInOneOutput
+  scalars: []
